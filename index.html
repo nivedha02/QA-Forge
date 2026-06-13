@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QA Forge — Your path to AI developer</title>
+  <meta name="description" content="Personal learning tracker for QA to AI developer journey" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">QA <span>Forge</span></div>
+    <div id="streak-badge"></div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <button class="nav-btn active" id="nav-dashboard" onclick="showScreen('dashboard')">Dashboard</button>
+    <button class="nav-btn" id="nav-curriculum" onclick="showScreen('curriculum')">Curriculum</button>
+    <button class="nav-btn" id="nav-streak" onclick="showScreen('streak')">Streak</button>
+  </nav>
+
+  <!-- Dashboard -->
+  <div id="screen-dashboard" class="screen active">
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-label">Current streak</div>
+        <div class="stat-val" id="s-streak">0</div>
+        <div class="stat-sub">days in a row</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Topics done</div>
+        <div class="stat-val" id="s-done">0</div>
+        <div class="stat-sub">of <span id="s-total">0</span> total</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Current phase</div>
+        <div class="stat-val" id="s-phase">1</div>
+        <div class="stat-sub">of 3 phases</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overall progress</div>
+        <div class="stat-val" id="s-pct">0%</div>
+        <div class="stat-sub">completed</div>
+      </div>
+    </div>
+
+    <div class="today-card">
+      <div class="today-label">Up next for you</div>
+      <div id="today-topic">Loading...</div>
+      <div id="today-phase" class="muted"></div>
+      <button class="btn-primary" onclick="showScreen('curriculum')">→ Go to curriculum</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Phase progress</div>
+      <div id="phase-progress-list"></div>
+    </div>
+
+  </div>
+
+  <!-- Curriculum -->
+  <div id="screen-curriculum" class="screen">
+    <div id="curriculum-list"></div>
+  </div>
+
+  <!-- Streak -->
+  <div id="screen-streak" class="screen">
+
+    <div class="card">
+      <div class="card-title">Activity — last 30 days</div>
+      <div class="streak-grid-wrap" id="streak-grid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Log today's session</div>
+      <p class="muted" style="font-size:13px;margin-bottom:12px">
+        Studied today but didn't finish a topic? Still counts — keep your streak alive.
+      </p>
+      <button class="btn-primary" id="log-btn" onclick="logToday()">Mark today complete</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Stats</div>
+      <div class="streak-stats">
+        <div class="stat">
+          <div class="stat-label">Current streak</div>
+          <div class="stat-val" id="streak-cur">0</div>
+          <div class="stat-sub">days</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Longest streak</div>
+          <div class="stat-val" id="streak-best">0</div>
+          <div class="stat-sub">days</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Total days logged</div>
+          <div class="stat-val" id="streak-total">0</div>
+          <div class="stat-sub">days</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">This month</div>
+          <div class="stat-val" id="streak-month">0</div>
+          <div class="stat-sub">days active</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Scripts — order matters -->
+<script src="data/curriculum.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/streak.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
