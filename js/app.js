@@ -142,22 +142,18 @@ async function loadProblems() {
   const container = document.getElementById("problems-content");
 
   try {
-    const response = await fetch("phase1-problems.md");
+    const response = await fetch("./phase1-problems.md");
     const markdown = await response.text();
 
-    // Simple display for now
-    container.innerHTML = `
-  <div class="problem-content">
-    <pre>${markdown}</pre>
-  </div>
-`;
+    container.innerHTML = marked.parse(markdown);
   } catch (err) {
     container.innerHTML = "Failed to load problems.";
   }
 }
+
 // ── Init ───────────────────────────────────────────────
-render();
-loadProblems();
+//render();
+//loadProblems();
 // ── Render: Streak ─────────────────────────────────────
 function renderStreak() {
   const today = Streak.today();
@@ -213,6 +209,7 @@ function render() {
   renderDashboard();
   renderCurriculum();
   renderStreak();
+  loadProblems();
 }
 
 // ── Init ───────────────────────────────────────────────
