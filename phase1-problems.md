@@ -1,25 +1,3 @@
-# QA Forge — Phase 1 Practice Problems
-### Your path from QA Engineer → AI Developer
-**Total: 120 problems across 8 topics**
-> Rules: Attempt first. No hints. No solutions. Paste your code in Claude chat for review.
-
----
-
-## Progress Tracker
-
-| Topic | Problems | Status |
-|-------|----------|--------|
-| T1 — Python OOP | 15 | ⏳ |
-| T2 — REST APIs | 15 | ⏳ |
-| T3 — FastAPI basics | 15 | ⏳ |
-| T4 — Git properly | 15 | ⏳ |
-| T5 — LLM API basics | 15 | ⏳ |
-| T6 — Prompt Engineering | 15 | ⏳ |
-| T7 — HTML + CSS | 15 | ⏳ |
-| T8 — JavaScript basics | 15 | ⏳ |
-
----
-
 ## T1 — Python OOP: Classes, Modules, Error Handling
 
 **Source:** [Real Python OOP Guide](https://realpython.com/python3-object-oriented-programming/) + [YouTube](https://www.youtube.com/watch?v=Ej_02ICOIgs)
