@@ -179,31 +179,7 @@ function renderStreak() {
   btn.disabled = alreadyLogged;
   btn.textContent = alreadyLogged ? "✓ Already logged today" : "Mark today complete";
 }
-const themeBtn = document.getElementById("theme-toggle");
 
-function setTheme(theme) {
-  document.body.classList.toggle(
-    "light-theme",
-    theme === "light"
-  );
-
-  themeBtn.textContent =
-    theme === "light" ? "☀️ Light" : "🌙 Dark";
-
-  localStorage.setItem("theme", theme);
-}
-
-// Load saved theme
-const savedTheme = localStorage.getItem("theme") || "dark";
-setTheme(savedTheme);
-
-// Toggle theme
-themeBtn.addEventListener("click", () => {
-  const isLight =
-    document.body.classList.contains("light-theme");
-
-  setTheme(isLight ? "dark" : "light");
-});
 // ── Master render ──────────────────────────────────────
 function render() {
   renderDashboard();
