@@ -22,6 +22,28 @@
   --mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
+/* Light Theme */
+body.light-theme {
+  bg: #f8fafc;
+  bg2: #ffffff;
+  bg3: #e5e7eb;
+  border: #d1d5db;
+
+  text: #111827;
+  muted: #6b7280;
+
+  blue: #2563eb;
+  blue-bg: #dbeafe;
+
+  green: #059669;
+  green-bg: #d1fae5;
+
+  orange: #ea580c;
+  orange-bg: #ffedd5;
+
+  red: #dc2626;
+  red-bg: #fee2e2;
+}
 body {
   background: var(--bg);
   color: var(--text);
