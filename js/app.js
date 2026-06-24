@@ -137,23 +137,7 @@ function renderCurriculum() {
       </div>`;
   }).join("");
 }
-//____ Render: Problems file ____________________________
-async function loadProblems() {
-  const container = document.getElementById("problems-content");
 
-  try {
-    const response = await fetch("./phase1-problems.md");
-    const markdown = await response.text();
-
-    container.innerHTML = marked.parse(markdown);
-  } catch (err) {
-    container.innerHTML = "Failed to load problems.";
-  }
-}
-
-// ── Init ───────────────────────────────────────────────
-//render();
-//loadProblems();
 // ── Render: Streak ─────────────────────────────────────
 function renderStreak() {
   const today = Streak.today();
@@ -209,7 +193,6 @@ function render() {
   renderDashboard();
   renderCurriculum();
   renderStreak();
-  loadProblems();
 }
 
 // ── Init ───────────────────────────────────────────────
