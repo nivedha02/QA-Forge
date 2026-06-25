@@ -1,5 +1,11 @@
 // ── State ──────────────────────────────────────────────
-let state = Storage.load();
+let state = Storage.load() || {};
+
+// Ensure all required properties exist
+state.completed = state.completed || {};
+state.solvedProblems = state.solvedProblems || {};
+state.streakDays = state.streakDays || [];
+state.lastLogged = state.lastLogged || null;
 
 // ── Helpers ────────────────────────────────────────────
 function totalTopics() {
@@ -45,8 +51,16 @@ function toggleTopic(id) {
 
 // ── Toggle practice problem checklist ──────────────────
 function toggleProblem(id) {
+  if (!state.solvedProblems) {
+    state.solvedProblems = {};
+  }
+
   state.solvedProblems[id] = !state.solvedProblems[id];
-  if (state.solvedProblems[id]) markStreak();
+
+  if (state.solvedProblems[id]) {
+    markStreak();
+  }
+
   Storage.save(state);
   render();
 }
@@ -122,7 +136,7 @@ function renderCurriculum() {
           <div class="bar-fill bar-${p.color}" style="width:${pct}%"></div>
         </div>
         ${p.topics.map(t => {
-          const isDone = !!state.completed[t.id];
+          const isDone = !!(state.solvedProblems && state.solvedProblems[t.id]);
           return `
             <div class="topic-row">
               <div class="topic-main" onclick="toggleTopic('${t.id}')">
