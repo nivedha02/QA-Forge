@@ -43,6 +43,14 @@ function toggleTopic(id) {
   render();
 }
 
+// ── Toggle practice problem checklist ──────────────────
+function toggleProblem(id) {
+  state.solvedProblems[id] = !state.solvedProblems[id];
+  if (state.solvedProblems[id]) markStreak();
+  Storage.save(state);
+  render();
+}
+
 // ── Log today manually ─────────────────────────────────
 function logToday() {
   markStreak();
@@ -138,6 +146,30 @@ function renderCurriculum() {
   }).join("");
 }
 
+// ── Render: Practice ────────────────────────────────────
+function renderPractice() {
+  const el = document.getElementById("practice-checklist");
+  el.innerHTML = CURRICULUM.map(p => {
+    return `
+      <div class="practice-phase-block">
+        <div class="practice-phase-title">${p.title.split("—")[1].trim()}</div>
+        ${p.topics.map(t => {
+          const isDone = !!state.solvedProblems[t.id];
+          const topicNum = t.id.replace("t", "");
+          return `
+            <div class="practice-row" onclick="toggleProblem('${t.id}')">
+              <div class="check-box practice-check ${isDone ? "checked" : ""}">
+                ${isDone ? "✓" : ""}
+              </div>
+              <span class="practice-name ${isDone ? "done" : ""}">
+                T${topicNum} — ${t.name}
+              </span>
+            </div>`;
+        }).join("")}
+      </div>`;
+  }).join("");
+}
+
 // ── Render: Streak ─────────────────────────────────────
 function renderStreak() {
   const today = Streak.today();
@@ -192,6 +224,7 @@ themeBtn.addEventListener("click", () => {
 function render() {
   renderDashboard();
   renderCurriculum();
+  renderPractice();
   renderStreak();
 }
 

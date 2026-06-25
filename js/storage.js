@@ -6,7 +6,7 @@ const Storage = {
       const raw = localStorage.getItem(this.KEY);
       if (raw) return JSON.parse(raw);
     } catch (e) {}
-    return { completed: {}, streakDays: [], lastLogged: null };
+    return { completed: {}, streakDays: [], lastLogged: null, solvedProblems: {} };
   },
 
   save(state) {
