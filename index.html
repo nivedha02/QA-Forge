@@ -27,6 +27,7 @@
   <nav class="nav">
     <button class="nav-btn active" id="nav-dashboard" onclick="showScreen('dashboard')">Dashboard</button>
     <button class="nav-btn" id="nav-curriculum" onclick="showScreen('curriculum')">Curriculum</button>
+    <button class="nav-btn" id="nav-practice" onclick="showScreen('practice')">Practice</button>
     <button class="nav-btn" id="nav-streak" onclick="showScreen('streak')">Streak</button>
   </nav>
 
@@ -73,6 +74,14 @@
   <!-- Curriculum -->
   <div id="screen-curriculum" class="screen">
     <div id="curriculum-list"></div>
+  </div>
+
+  <!-- Practice -->
+  <div id="screen-practice" class="screen">
+    <div class="card">
+      <div class="card-title">Problems Nav</div>
+      <div id="practice-checklist"></div>
+    </div>
   </div>
     
   <!-- Streak -->
