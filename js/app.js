@@ -117,12 +117,14 @@ function renderDashboard() {
   }).join("");
 }
 
+
 // ── Render: Curriculum ─────────────────────────────────
 function renderCurriculum() {
   const el = document.getElementById("curriculum-list");
   el.innerHTML = CURRICULUM.map(p => {
     const done = p.topics.filter(t => state.completed[t.id]).length;
     const pct = Math.round((done / p.topics.length) * 100);
+
     return `
       <div class="phase-card">
         <div class="phase-card-header">
@@ -130,36 +132,54 @@ function renderCurriculum() {
             <div class="phase-card-title">${p.title}</div>
             <div class="phase-card-months muted">${p.months}</div>
           </div>
-          <span class="badge badge-${p.color}">${done}/${p.topics.length} done</span>
+
+          <span class="badge badge-${p.color}">
+            ${done}/${p.topics.length} done
+          </span>
         </div>
+
         <div class="bar-track" style="margin-bottom:1rem">
           <div class="bar-fill bar-${p.color}" style="width:${pct}%"></div>
         </div>
+
         ${p.topics.map(t => {
-          const isDone = !!(state.solvedProblems && state.solvedProblems[t.id]);
+
+          // ✅ Use completed instead of solvedProblems
+          const isDone = !!state.completed[t.id];
+
           return `
             <div class="topic-row">
+
               <div class="topic-main" onclick="toggleTopic('${t.id}')">
+
                 <div class="check-box ${isDone ? "checked" : ""}">
                   ${isDone ? "✓" : ""}
                 </div>
-                <span class="topic-name ${isDone ? "done" : ""}">${t.name}</span>
-                <span class="topic-time muted">${t.time}</span>
+
+                <span class="topic-name ${isDone ? "done" : ""}">
+                  ${t.name}
+                </span>
+
+                <span class="topic-time muted">
+                  ${t.time}
+                </span>
+
               </div>
+
               <div class="source-links">
-                <a class="src-btn src-yt" href="${t.yt.url}" target="_blank" rel="noopener">
+
+                <a class="src-btn src-yt"
+                   href="${t.yt.url}"
+                   target="_blank"
+                   rel="noopener">
                   ▶ ${t.yt.label}
                 </a>
-                <a class="src-btn src-doc" href="${t.doc.url}" target="_blank" rel="noopener">
-                  📄 ${t.doc.label}
-                </a>
-              </div>
-            </div>`;
+                <a class="src-btn src-doc" href="${t.doc.url}" target="_blank" rel="noopener">📄 ${t.doc.label} </a>
+              </div></div>`;
         }).join("")}
-      </div>`;
+        </div>`;
   }).join("");
 }
-
 // ── Render: Practice ────────────────────────────────────
 function renderPractice() {
   const el = document.getElementById("practice-checklist");
